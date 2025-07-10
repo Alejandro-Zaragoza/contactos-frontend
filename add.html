@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Editar Contacto</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Agregar Contacto</title>
+  <link rel="stylesheet" href="public/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Editar contacto</h1>
-    <form id="edit-form">
+    <h1>Agregar nuevo contacto</h1>
+    <form id="form-agregar">
       <input type="text" name="nombre" placeholder="Nombre" required />
       <input type="text" name="domicilio" placeholder="Domicilio" required />
       <input type="email" name="correo" placeholder="Correo" required />
       <input type="tel" name="telefono" placeholder="Teléfono" required />
-      <button type="submit">Guardar cambios</button>
+      <button type="submit">Guardar</button>
     </form>
   </div>
 
   <script>
     const API_URL = 'https://contactos-backend-v7hn.onrender.com';
-    const form = document.getElementById('edit-form');
-
-    // Obtener el id desde query string (?id=)
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    // Cargar datos del contacto
-    fetch(`${API_URL}/api/contactos/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        form.nombre.value = data.nombre;
-        form.domicilio.value = data.domicilio;
-        form.correo.value = data.correo;
-        form.telefono.value = data.telefono;
-      });
+    const form = document.getElementById('form-agregar');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -45,12 +31,15 @@
         telefono: form.telefono.value
       };
 
-      fetch(`${API_URL}/api/contactos/${id}`, {
+      fetch(`${API_URL}/api/contactos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(datos)
-      }).then(() => window.location.href = 'index.html');
+      })
+      .then(() => window.location.href = 'index.html')
+      .catch(() => alert('Error al guardar'));
     });
   </script>
+  <script src="public/script.js"></script>
 </body>
 </html>
