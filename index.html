@@ -40,8 +40,8 @@
                 <td>${c.correo}</td>
                 <td>${c.telefono}</td>
                 <td>
-                  <a href="edit.html?id=${c.id}">Editar</a>
-                  <button onclick="eliminar(${c.id})">Eliminar</button>
+                  <a class="btn-edit" href="edit.html?id=${c.id}">Editar</a>
+                  <button class="btn-delete" onclick="eliminar(${c.id})">Eliminar</button>
                 </td>
               </tr>`;
           });
