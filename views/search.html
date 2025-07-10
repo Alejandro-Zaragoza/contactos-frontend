@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscar Contacto</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Buscar contacto</h1>
+    <input type="text" id="buscar-nombre" placeholder="Nombre a buscar" />
+    <button onclick="buscar()">Buscar</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nombre</th><th>Domicilio</th><th>Correo</th><th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody id="resultados"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = 'https://contactos-backend-v7hn.onrender.com';
+
+    function buscar() {
+      const nombre = document.getElementById('buscar-nombre').value;
+      fetch(`${API_URL}/api/search?nombre=${encodeURIComponent(nombre)}`)
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById('resultados');
+          tbody.innerHTML = '';
+          data.forEach(c => {
+            tbody.innerHTML += `
+              <tr>
+                <td>${c.id}</td>
+                <td>${c.nombre}</td>
+                <td>${c.domicilio}</td>
+                <td>${c.correo}</td>
+                <td>${c.telefono}</td>
+              </tr>`;
+          });
+        });
+    }
+  </script>
+</body>
+</html>

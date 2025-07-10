@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Contacto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Agregar nuevo contacto</h1>
+    <form id="form-agregar">
+      <input type="text" name="nombre" placeholder="Nombre" required />
+      <input type="text" name="domicilio" placeholder="Domicilio" required />
+      <input type="email" name="correo" placeholder="Correo" required />
+      <input type="tel" name="telefono" placeholder="Teléfono" required />
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <script>
+    const API_URL = 'https://contactos-backend-v7hn.onrender.com';
+    const form = document.getElementById('form-agregar');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const datos = {
+        nombre: form.nombre.value,
+        domicilio: form.domicilio.value,
+        correo: form.correo.value,
+        telefono: form.telefono.value
+      };
+
+      fetch(`${API_URL}/api/contactos`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(datos)
+      })
+      .then(() => window.location.href = 'index.html')
+      .catch(() => alert('Error al guardar'));
+    });
+  </script>
+</body>
+</html>

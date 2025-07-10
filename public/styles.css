@@ -1,0 +1,223 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  color: #333;
+}
+
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 900px;
+  padding: 30px 40px;
+}
+
+/* Títulos */
+h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Links para navegación */
+nav {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 0 15px;
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background: #2980b9;
+}
+
+/* Tabla estilizada */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 1rem;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px 15px;
+  background: #2980b9;
+  color: white;
+  font-weight: 600;
+  border-radius: 12px 12px 0 0;
+}
+
+tbody tr {
+  background: #f0f4f8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #d6e7fb;
+}
+
+tbody td {
+  padding: 14px 15px;
+  vertical-align: middle;
+  border: none;
+}
+
+/* Formulario estilizado */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+form input {
+  flex: 1 1 45%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1.8px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+form button {
+  flex: 1 1 100%;
+  padding: 14px 20px;
+  background: #27ae60;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background: #1e8449;
+}
+
+/* Botón volver */
+a.volver {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 600;
+  color: #2980b9;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.volver:hover {
+  color: #1c5980;
+}
+
+/* Input y botón en búsqueda */
+#buscar-nombre {
+  width: 70%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1.8px solid #ccc;
+  font-size: 1rem;
+  margin-right: 10px;
+  transition: border-color 0.3s ease;
+}
+
+#buscar-nombre:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+button[onclick="buscar()"] {
+  padding: 12px 20px;
+  background: #2980b9;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[onclick="buscar()"]:hover {
+  background: #1c5980;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form input, form button {
+    flex: 1 1 100%;
+  }
+  #buscar-nombre {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+}
+
+.btn-edit, .btn-delete {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background: #f39c12;
+  color: white;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn-edit:hover {
+  background: #d48806;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}

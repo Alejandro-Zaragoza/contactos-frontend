@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Contactos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Contactos</h1>
+    <nav>
+      <a href="add.html">Agregar Contacto</a>
+      <a href="search.html">Buscar Contacto</a>
+    </nav>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nombre</th><th>Domicilio</th><th>Correo</th><th>Teléfono</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="contactos-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = 'https://contactos-backend-v7hn.onrender.com';
+
+    window.onload = () => {
+      fetch(`${API_URL}/api/contactos`)
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById('contactos-body');
+          tbody.innerHTML = '';
+          data.forEach(c => {
+            tbody.innerHTML += `
+              <tr>
+                <td>${c.id}</td>
+                <td>${c.nombre}</td>
+                <td>${c.domicilio}</td>
+                <td>${c.correo}</td>
+                <td>${c.telefono}</td>
+                <td>
+                  <a href="edit.html?id=${c.id}">Editar</a>
+                  <button onclick="eliminar(${c.id})">Eliminar</button>
+                </td>
+              </tr>`;
+          });
+        });
+    };
+
+    function eliminar(id) {
+      if (confirm('¿Eliminar este contacto?')) {
+        fetch(`${API_URL}/api/contactos/${id}`, { method: 'DELETE' })
+          .then(() => window.location.reload());
+      }
+    }
+  </script>
+</body>
+</html>
